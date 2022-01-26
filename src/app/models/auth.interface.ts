@@ -5,5 +5,21 @@ export interface ILoginData {
 
 export interface IResAuth {
     message: string;
-    acces_token: string;
+    token: string;
+}
+
+export interface IRegistroPaciente {
+    name: string;
+    email: string;
+    password: string;
+    password_confirmation: string;
+}
+
+export interface IRegistroMedico {
+    name: string;
+    last_name: string;
+    email: string;
+    password: string;
+    password_confirmation: string;
+    especialidad_id: number;
 }

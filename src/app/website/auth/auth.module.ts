@@ -8,6 +8,7 @@ import { LayoutAuthComponent } from './components/layout-auth/layout-auth.compon
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@shared/shared.module';
+import { RegisterMedicoComponent } from './pages/register-medico/register-medico.component';
 
 
 @NgModule( {
@@ -15,7 +16,8 @@ import { SharedModule } from '@shared/shared.module';
     LoginComponent,
     RegisterComponent,
     LayoutAuthComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    RegisterMedicoComponent
   ],
   imports: [
     CommonModule,

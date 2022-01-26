@@ -1,18 +1,18 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpStatusCode } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ILoginData, IRegistroPaciente, IResAuth } from '@models/auth.interface';
-import { IRespUsuario, IUsuario } from '@models/usuario.interface';
-import { tap, catchError, throwError, BehaviorSubject } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../environments/environment';
+import { ILoginData, IResAuth, IRegistroMedico } from '../models/auth.interface';
+import { BehaviorSubject, catchError, tap, throwError } from 'rxjs';
 import { LocalStorageService } from './local-storage.service';
+import { IMedico, IRespMedico } from '../models/medico.interface';
 
 @Injectable( {
   providedIn: 'root'
 } )
-export class AuthService {
+export class AuthMedicoService {
 
   private url = environment.urlBase;
-  private user = new BehaviorSubject<IUsuario>( {} as IUsuario );
+  private user = new BehaviorSubject<IMedico>( {} as IMedico );
 
   constructor(
     private http: HttpClient,
@@ -20,7 +20,7 @@ export class AuthService {
   ) { }
 
   login ( data: ILoginData ) {
-    return this.http.post<IResAuth>( `${ this.url }/api/login/user`, data ).pipe(
+    return this.http.post<IResAuth>( `${ this.url }/api/login/medico`, data ).pipe(
       tap( ( resp ) => {
         if ( resp.token ) {
           this.localStorageService.save( resp.token, 'token' );
@@ -34,13 +34,13 @@ export class AuthService {
   }
 
   myProfile () {
-    return this.http.get<IRespUsuario>( `${ this.url }/api/user-profile` ).pipe(
+    return this.http.get<IRespMedico>( `${ this.url }/api/medico-profile` ).pipe(
       tap( ( resp ) => this.user.next( resp.data ) )
     );
   }
 
-  register ( data: IRegistroPaciente ) {
-    return this.http.post<IRespUsuario>( `${ this.url }/api/register/user`, data ).pipe(
+  register ( data: IRegistroMedico ) {
+    return this.http.post<IRespMedico>( `${ this.url }/api/register/medico`, data ).pipe(
       catchError( ( error: HttpErrorResponse ) => this.evalError( error ) )
     );
   }
@@ -53,7 +53,7 @@ export class AuthService {
     } );
 
     localStorage.removeItem( 'token' );
-    return this.http.get<IResAuth>( `${ this.url }/api/logout/user`, { headers } );
+    return this.http.get<IResAuth>( `${ this.url }/api/logout/medico`, { headers } );
   }
 
   //! ** Evaluamos el error **
@@ -69,3 +69,4 @@ export class AuthService {
     return throwError( () => 'Ups algo salio mal' );
   }
 }
+

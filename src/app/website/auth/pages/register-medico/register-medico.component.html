@@ -9,7 +9,7 @@
         </div>
 
         <div class="text-center bg-green-400 text-white mb-4">
-            <app-error-message *ngIf="statusLogin === 'success'">
+            <app-error-message *ngIf="status === 'success'">
                 Datos correctos ahora puede iniciar sesión
             </app-error-message>
         </div>
@@ -25,6 +25,16 @@
         </div>
 
         <div class="mb-4">
+            <app-label>Apellidos</app-label>
+            <input formControlName="last_name"
+                   [ngClass]="{'input-invalid': campoInvalido('last_name')}"
+                   class="input-disabled"
+                   type="text">
+            <app-error-message *ngIf="campoInvalido('last_name')">Campo requerido
+            </app-error-message>
+        </div>
+
+        <div class="mb-4">
             <app-label>Email</app-label>
             <input formControlName="email"
                    [ngClass]="{'input-invalid': campoInvalido('email')}"
@@ -35,10 +45,21 @@
         </div>
 
         <div class="mb-4">
+            <app-label>Especialidad</app-label>
+            <input formControlName="especialidad_id"
+                   [ngClass]="{'input-invalid': campoInvalido('especialidad_id')}"
+                   class="input-disabled"
+                   type="number">
+            <app-error-message *ngIf="campoInvalido('especialidad_id')">Campo requerido
+            </app-error-message>
+        </div>
+
+        <div class="mb-4">
             <app-label>Contraseña</app-label>
             <input formControlName="password"
                    [ngClass]="{'input-invalid': campoInvalido('password')}"
                    class="input-disabled"
+                   name="password"
                    autocomplete="on"
                    type="password">
             <app-error-message *ngIf="campoInvalido('password')">Campo requerido
@@ -50,6 +71,7 @@
             <input formControlName="password_confirmation"
                    [ngClass]="{'input-invalid': campoInvalido('password_confirmation')}"
                    class="input-disabled"
+                   name="password_confirmation"
                    autocomplete="on"
                    type="password">
             <app-error-message *ngIf="campoInvalido('password_confirmation')">
@@ -57,7 +79,7 @@
             </app-error-message>
         </div>
 
-        <div *ngIf="statusLogin === 'loading'; else button" class="text-center">
+        <div *ngIf="status === 'loading'; else button" class="text-center">
             <app-button (onClickFunction)="handleSubmit()" [disable]="true">
                 Cargando...
             </app-button>
@@ -75,5 +97,6 @@
                 Inicia sesión</p>
         </div>
     </form>
+
 
 </app-layout-auth>
