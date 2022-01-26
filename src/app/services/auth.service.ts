@@ -12,7 +12,7 @@ import { LocalStorageService } from './local-storage.service';
 export class AuthService {
 
   private url = environment.urlBase;
-  private user = new BehaviorSubject<IUsuario>( {} as IUsuario );
+  public user$ = new BehaviorSubject<IUsuario>( {} as IUsuario );
 
   constructor(
     private http: HttpClient,
@@ -35,7 +35,7 @@ export class AuthService {
 
   myProfile () {
     return this.http.get<IRespUsuario>( `${ this.url }/api/user-profile` ).pipe(
-      tap( ( resp ) => this.user.next( resp.data ) )
+      tap( ( resp ) => this.user$.next( resp.data ) )
     );
   }
 
@@ -63,7 +63,7 @@ export class AuthService {
       return throwError( () => 'Algo esta fallando en el servidor' );
     }
     if ( error.status === HttpStatusCode.UnprocessableEntity ) {
-      return throwError( () => 'Los password no coinciden' );
+      return throwError( () => 'Datos ingresados de manera incorrecta' );
     }
 
     return throwError( () => 'Ups algo salio mal' );

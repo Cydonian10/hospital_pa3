@@ -12,7 +12,7 @@ import { IMedico, IRespMedico } from '../models/medico.interface';
 export class AuthMedicoService {
 
   private url = environment.urlBase;
-  private user = new BehaviorSubject<IMedico>( {} as IMedico );
+  public medico$ = new BehaviorSubject<IMedico>( {} as IMedico );
 
   constructor(
     private http: HttpClient,
@@ -35,7 +35,7 @@ export class AuthMedicoService {
 
   myProfile () {
     return this.http.get<IRespMedico>( `${ this.url }/api/medico-profile` ).pipe(
-      tap( ( resp ) => this.user.next( resp.data ) )
+      tap( ( resp ) => this.medico$.next( resp.data ) )
     );
   }
 
@@ -63,7 +63,7 @@ export class AuthMedicoService {
       return throwError( () => 'Algo esta fallando en el servidor' );
     }
     if ( error.status === HttpStatusCode.UnprocessableEntity ) {
-      return throwError( () => 'Los password no coinciden' );
+      return throwError( () => 'Datos mal escritos' );
     }
 
     return throwError( () => 'Ups algo salio mal' );

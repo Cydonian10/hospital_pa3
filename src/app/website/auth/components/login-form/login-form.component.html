@@ -1,15 +1,6 @@
 <form [formGroup]="myForm" class="shadow-lg w-96 shadow-primary/50 p-4">
 
-    <div class="mt-3 text-sm text-center">
-        <span class="text-gray-600">
-            ¿Quieres una cuenta como médico? ingrese aquí
-            <p routerLink="/auth/register-medico"
-               class="hover:underline cursor-pointer font-bold">
-                Registrate como médico</p>
-        </span>
-    </div>
-
-    <app-titulo>Inicio de sesión</app-titulo>
+    <app-titulo>Inicio de sesión usuario</app-titulo>
 
     <div class="text-center bg-red-400/40">
         <app-error-message *ngIf="error">{{error}}</app-error-message>

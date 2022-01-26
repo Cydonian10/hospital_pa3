@@ -1,0 +1,88 @@
+<div class="pt-17">
+    <app-titulo>Datos personales</app-titulo>
+    <form class="md:grid md:grid-cols-2" [formGroup]="myForm">
+
+        <div>
+            <div class="mb-4">
+                <app-label>Nombre</app-label>
+                <!-- [ngClass]="{'input-invalid': campoInvalido('email')}" -->
+                <input formControlName="name"
+                       class="input-disabled"
+                       type="text">
+                <!-- <app-error-message *ngIf="campoInvalido('email')">Campo requerido
+                        </app-error-message> -->
+            </div>
+
+            <div class="mb-4">
+                <app-label>Apellidos</app-label>
+                <!-- [ngClass]="{'input-invalid': campoInvalido('email')}" -->
+                <input formControlName="last_name"
+                       class="input-disabled"
+                       type="text">
+                <!-- <app-error-message *ngIf="campoInvalido('email')">Campo requerido
+                                                </app-error-message> -->
+            </div>
+
+            <div class="mb-4">
+                <app-label>Email</app-label>
+                <!-- [ngClass]="{'input-invalid': campoInvalido('email')}" -->
+                <input formControlName="email"
+                       class="input-disabled"
+                       type="text">
+                <!-- <app-error-message *ngIf="campoInvalido('email')">Campo requerido
+                                </app-error-message> -->
+            </div>
+
+            <div class="mb-4">
+                <app-label>Apellidos</app-label>
+                <!-- [ngClass]="{'input-invalid': campoInvalido('email')}" -->
+                <input formControlName="telefono"
+                       class="input-disabled"
+                       type="text">
+                <!-- <app-error-message *ngIf="campoInvalido('email')">Campo requerido
+                                                </app-error-message> -->
+            </div>
+
+
+            <div class="mb-4">
+                <app-label>Grado de doctor</app-label>
+                <!-- [ngClass]="{'input-invalid': campoInvalido('email')}" -->
+                <input formControlName="titulo_medico"
+                       class="input-disabled"
+                       type="text">
+                <!-- <app-error-message *ngIf="campoInvalido('email')">Campo requerido
+                                                </app-error-message> -->
+            </div>
+
+            <div class="mb-4">
+                <app-label>Grado de doctor</app-label>
+                <!-- [ngClass]="{'input-invalid': campoInvalido('email')}" -->
+                <select formControlName="especialidad_id" class="input-disabled">
+                    <option value="1">Pediatra</option>
+                    <option value="2">Ginecologo</option>
+                    <option value="3">Doctor</option>
+                    <option value="4">Ginecologo</option>
+                    <option value="5">Pediatra</option>
+                </select>
+                <!-- <app-error-message *ngIf="campoInvalido('email')">Campo requerido
+                                            </app-error-message> -->
+            </div>
+        </div>
+
+        <div class="card p-4 profile  justify-self-center">
+            <p class="mb-4">Foto de perfil</p>
+            <div class="avatar">
+                <input type="file" (change)="changeImage($event)" #fileUploader
+                       id="file-uploader">
+                <div #img class="img"
+                     [style]="'background-image: url('+ image?.value +')'">
+                </div>
+                <label for="file-uploader" class="avatar-selector bg-indigo-500">
+                    <img src="assets/icons/camera.svg" alt="">
+                </label>
+
+            </div>
+        </div>
+
+    </form>
+</div>

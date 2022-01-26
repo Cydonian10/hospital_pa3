@@ -6,6 +6,8 @@ import { TituloComponent } from './components/titulo/titulo.component';
 import { ErrorMessageComponent } from './components/error-message/error-message.component';
 import { LabelComponent } from './components/label/label.component';
 import { ButtonComponent } from './components/button/button.component';
+import { NavBarUsuarioComponent } from './components/nav-bar-usuario/nav-bar-usuario.component';
+import { NavBarMedicoComponent } from './components/nav-bar-medico/nav-bar-medico.component';
 
 
 
@@ -15,15 +17,17 @@ import { ButtonComponent } from './components/button/button.component';
     TituloComponent,
     ErrorMessageComponent,
     LabelComponent,
-    ButtonComponent
+    ButtonComponent,
+    NavBarUsuarioComponent,
+    NavBarMedicoComponent
   ],
   exports: [
     NavBarComponent,
     TituloComponent,
     ErrorMessageComponent,
     LabelComponent,
-    ButtonComponent
-
+    ButtonComponent,
+    NavBarUsuarioComponent
   ],
   imports: [
     CommonModule,

@@ -9,6 +9,7 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@shared/shared.module';
 import { RegisterMedicoComponent } from './pages/register-medico/register-medico.component';
+import { LoginMedicoComponent } from './pages/login-medico/login-medico.component';
 
 
 @NgModule( {
@@ -17,7 +18,8 @@ import { RegisterMedicoComponent } from './pages/register-medico/register-medico
     RegisterComponent,
     LayoutAuthComponent,
     LoginFormComponent,
-    RegisterMedicoComponent
+    RegisterMedicoComponent,
+    LoginMedicoComponent
   ],
   imports: [
     CommonModule,

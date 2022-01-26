@@ -23,26 +23,30 @@
 
         <!-- ! links del menu -->
         <div class="nav_menu bg-indigo-600 shadow-lg shadow-indigo-500/40">
+
+            <div class="nav_item cursor-pointer hover:text-gray-700"
+                 routerLink="/medicos/citas">
+                Citas
+            </div>
+
             <div
-                 class="nav_item cursor-pointer hover:text-gray-700"
-                 routerLink
-                 fragment="part1"
-                 routerLinkActive="text-gray-600"
-                 [routerLinkActiveOptions]="{exact: true}">
-                Incio
+                 class=" nav_item cursor-pointer hover:text-gray-700"
+                 routerLink="/medicos/perfil">
+                Perfil
             </div>
 
             <div
                  class="nav_item cursor-pointer hover:text-gray-700"
-                 routerLink
-                 fragment="part2"
-                 routerLinkActive="text-gray-600"
-                 [routerLinkActiveOptions]="{exact: true}">
-                Servicios
+                 (click)="logaout()"
+                 routerLink="/auth/login-medico">
+                Salir
             </div>
-
         </div>
 
     </div>
 
 </nav>
+
+<div class="container m-auto">
+    <router-outlet></router-outlet>
+</div>
