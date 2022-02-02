@@ -7,8 +7,6 @@ const routes: Routes = [
   {
     path: "",
     component: NavBarMedicoComponent,
-    canActivate: [ AuthMedicoGuard ],
-    canLoad: [ AuthMedicoGuard ],
     children: [
       {
         path: "citas", loadChildren: () => import( "./citas/citas.module" ).then( m => m.CitasModule )

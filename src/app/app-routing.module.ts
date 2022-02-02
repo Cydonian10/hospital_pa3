@@ -21,8 +21,8 @@ const routes: Routes = [
   },
   {
     path: "medicos",
-    // canActivate: [ AuthMedicoGuard ],
-    // canLoad: [ AuthMedicoGuard ],
+    canActivate: [ AuthMedicoGuard ],
+    canLoad: [ AuthMedicoGuard ],
     loadChildren: () => import( "./medicos/medicos.module" ).then( m => m.MedicosModule )
   },
   {

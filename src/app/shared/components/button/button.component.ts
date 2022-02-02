@@ -13,4 +13,5 @@ export class ButtonComponent {
   onClick ( e: Event ) {
     this.onClickFunction.emit( e );
   }
+
 }

@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
-@Component({
+@Component( {
   selector: 'app-layout-auth',
   templateUrl: './layout-auth.component.html',
-  styleUrls: ['./layout-auth.component.scss']
-})
+  styleUrls: [ './layout-auth.component.scss' ]
+} )
 export class LayoutAuthComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngOnInit (): void {
   }
 
 }
