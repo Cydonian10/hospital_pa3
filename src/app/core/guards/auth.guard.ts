@@ -13,7 +13,9 @@ export class AuthGuard implements CanActivate, CanLoad {
     private localStorageService: LocalStorageService,
     private authService: AuthService,
     private router: Router
-  ) { }
+  ) {
+    this.authService.myProfile();
+  }
 
   redirec ( flag: boolean ) {
     if ( !flag ) {
@@ -27,12 +29,15 @@ export class AuthGuard implements CanActivate, CanLoad {
 
     let token = this.localStorageService.get( 'token' ) ? true : false;
 
-    if ( Object.keys( this.authService.user$.value ).length === 0 ) {
-      this.authService.myProfile().subscribe( {
-        next: ( resp ) => { this.authService.user$.next( resp.data ); },
-        error: () => this.router.navigateByUrl( "/auth/login" )
-      } );
+    if ( !this.authService.user$ ) {
+      this.router.navigateByUrl( "/auth/login" );
     }
+
+    // this.authService.myProfile().subscribe( {
+    //   next: ( resp ) => { this.authService.user$.next( resp ); },
+    //   error: () => this.router.navigateByUrl( "/auth/login" )
+    // } );
+
 
     this.redirec( token );
     return token;
@@ -43,12 +48,15 @@ export class AuthGuard implements CanActivate, CanLoad {
 
     let token = this.localStorageService.get( 'token' ) ? true : false;
 
-    if ( Object.keys( this.authService.user$.value ).length === 0 ) {
-      this.authService.myProfile().subscribe( {
-        next: ( resp ) => { this.authService.user$.next( resp.data ); },
-        error: () => this.router.navigateByUrl( "/auth/login" )
-      } );
+    if ( !this.authService.user$ ) {
+      this.router.navigateByUrl( "/auth/login" );
     }
+
+    // this.authService.myProfile().subscribe( {
+    //   next: ( resp ) => { this.authService.user$.next( resp ); },
+    //   error: () => this.router.navigateByUrl( "/auth/login" )
+    // } );
+
 
     this.redirec( token );
     return token;

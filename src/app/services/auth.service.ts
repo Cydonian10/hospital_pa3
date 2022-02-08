@@ -5,6 +5,7 @@ import { IRespUsuario, IUsuario } from '@models/usuario.interface';
 import { tap, catchError, throwError, BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { LocalStorageService } from './local-storage.service';
+import { UpdateUsuarioDto } from '../models/usuario.interface';
 
 @Injectable( {
   providedIn: 'root'
@@ -24,7 +25,7 @@ export class AuthService {
       tap( ( resp ) => {
         if ( resp.token ) {
           this.localStorageService.save( resp.token, 'token' );
-          this.myProfile().subscribe();
+          this.myProfile();
         }
       } ),
       catchError( ( error: HttpErrorResponse ) => {
@@ -33,10 +34,19 @@ export class AuthService {
     );
   }
 
+
   myProfile () {
-    return this.http.get<IRespUsuario>( `${ this.url }/api/user-profile` ).pipe(
-      tap( ( resp ) => this.user$.next( resp.data ) )
-    );
+    if ( Object.keys( this.user$.value ).length === 0 ) {
+      console.log( 'hola' );
+      this.http.get<IRespUsuario>( `${ this.url }/api/user-profile` ).pipe(
+        tap( ( resp ) => this.user$.next( resp.data ) )
+      ).subscribe();
+    }
+
+  }
+
+  update ( changes: UpdateUsuarioDto, id: string ) {
+    return this.http.put<IRespUsuario>( `${ this.url }/api/usuario/update/${ id }`, changes );
   }
 
   register ( data: IRegistroPaciente ) {

@@ -1,0 +1,59 @@
+<div class="pt-20">
+    <app-titulo>Citas generadas</app-titulo>
+    <article class="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
+        <div class="p-3 shadow-lg"
+             *ngFor="let cita of citas">
+            <h2 class="text-center ">{{cita.name | titlecase}}</h2>
+            <span
+                  class="text-gray-500 text-sm">{{cita.created_at | date:'yyyy/mm/dd hh:mm'}}</span>
+
+            <div class="flex my-3">
+                <p class="font-semibold mr-3">Estado: </p>
+                <span
+                      class=" font-semibold"
+                      [ngClass]="{ 'text-indigo-400': cita.estado === 'pendiente', 'text-red-400': cita.estado === 'rechazado' }">
+                    {{cita.estado}}
+                </span>
+            </div>
+            <div class="flex">
+                <p class="font-semibold mr-3">Ir a la cita: </p>
+                <span class="mb-3" *ngIf="!cita.sala_meet_cita;else citaUrl">
+                    No hay url de la cita
+                </span>
+                <ng-template #citaUrl>
+                    <span
+                          class="mb-3">
+                        {{cita.sala_meet_cita}}
+                        <a class="bg-indigo-500 px-4 py-1 text-white"
+                           [href]="cita.sala_meet_cita"
+                           target="_blank">
+                            Ir
+                        </a>
+                    </span>
+                </ng-template>
+            </div>
+
+            <div class="flex">
+                <p class="font-semibold mr-3">Receta: </p>
+                <span class="mb-3">
+                    No hay receta
+                </span>
+                <ng-template #receta>
+                    <span
+                          class=" mb-3">
+                        {{cita.sala_meet_cita}}
+                        <a class="bg-indigo-500 px-4 py-1 text-white"
+                           [href]="cita.sala_meet_cita"
+                           target="_blank">
+                            Ir
+                        </a>
+                    </span>
+                </ng-template>
+            </div>
+            <div>
+                <app-button-cancelar>Cancelar</app-button-cancelar>
+            </div>
+        </div>
+
+    </article>
+</div>

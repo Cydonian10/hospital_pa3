@@ -1,9 +1,12 @@
 <div class="pt-17">
     <app-titulo>Datos personales</app-titulo>
-    <form class="md:grid md:grid-cols-2" [formGroup]="myForm">
+
+    <form (submit)="handleSubmit()" class=" md:grid md:grid-cols-2"
+          [formGroup]="myForm">
+
 
         <div>
-            <div class="mb-4">
+            <div class=" mb-4">
                 <app-label>Nombre</app-label>
                 <!-- [ngClass]="{'input-invalid': campoInvalido('email')}" -->
                 <input formControlName="name"
@@ -34,13 +37,13 @@
             </div>
 
             <div class="mb-4">
-                <app-label>Apellidos</app-label>
+                <app-label>Telefono</app-label>
                 <!-- [ngClass]="{'input-invalid': campoInvalido('email')}" -->
                 <input formControlName="telefono"
                        class="input-disabled"
                        type="text">
-                <!-- <app-error-message *ngIf="campoInvalido('email')">Campo requerido
-                                                </app-error-message> -->
+                <app-error-message *ngIf="campoInvalido('telefono')">Campo requerido
+                </app-error-message>
             </div>
 
 
@@ -55,7 +58,7 @@
             </div>
 
             <div class="mb-4">
-                <app-label>Grado de doctor</app-label>
+                <app-label>Especialidad</app-label>
                 <!-- [ngClass]="{'input-invalid': campoInvalido('email')}" -->
                 <select formControlName="especialidad_id" class="input-disabled">
                     <option value="1">Pediatra</option>
@@ -67,22 +70,69 @@
                 <!-- <app-error-message *ngIf="campoInvalido('email')">Campo requerido
                                             </app-error-message> -->
             </div>
+
+            <div class="mb-4 text-center">
+                <app-label>Agregar Horario</app-label>
+                <input class="border rounded-sm py-1 px-4 border-gray-400" type="time"
+                       [formControl]="myHora">
+                <app-button-secondary (onClick)="agragarHorario()">Agregar
+                </app-button-secondary>
+            </div>
+
+            <div class="mb-4" formArrayName="horarios">
+                <app-label>Horarios</app-label>
+                <div *ngFor="let horario of horariosArr.controls;let i = index">
+                    <div class="grid grid-cols-2 gap-3 mb-2">
+                        <input [formControlName]="i"
+                               class="border rounded-sm py-1 px-4 border-gray-400"
+                               type="time">
+                        <button (click)="removeHorario(i)"
+                                class="bg-blue-400">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
 
+        <!-- ** Perfil del medico ** -->
         <div class="card p-4 profile  justify-self-center">
             <p class="mb-4">Foto de perfil</p>
-            <div class="avatar">
-                <input type="file" (change)="changeImage($event)" #fileUploader
-                       id="file-uploader">
-                <div #img class="img"
-                     [style]="'background-image: url('+ image?.value +')'">
-                </div>
-                <label for="file-uploader" class="avatar-selector bg-indigo-500">
-                    <img src="assets/icons/camera.svg" alt="">
-                </label>
 
+            <div *ngIf="cargando === 'cargando';else foto">
+                ...cargando
             </div>
+
+            <ng-template #foto>
+                <div class="avatar">
+                    <input type="file" (change)="changeImage($event)" #fileUploader
+                           id="file-uploader">
+                    <!-- <div #img class="img"
+                         [style]="'background-image: url('+ image?.value +')'">
+                    </div> -->
+
+                    <div>
+                        <img class="img" [src]="image?.value" alt="">
+                    </div>
+                    <label for="file-uploader" class="avatar-selector bg-indigo-500">
+                        <img src="assets/icons/camera.svg" alt="">
+                    </label>
+                </div>
+            </ng-template>
+
         </div>
 
+        <div class="text-center mb-4">
+            <app-button type="submit">Enviar</app-button>
+        </div>
     </form>
 </div>
+
+
+<app-alert *ngIf="enviando === 'success'">
+    Se actulizo perfil
+</app-alert>
+
+<app-alert-error *ngIf="enviando === 'error'">
+    Error
+</app-alert-error>

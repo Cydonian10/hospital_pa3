@@ -1,0 +1,20 @@
+<section class="modal" [ngClass]="{'modal--show': show}">
+    <div class="modal__container">
+        <h2 class="modal__title text-2xl font-bold">
+            {{medico.name}} {{medico.last_name}}
+        </h2>
+        <div class="container_body">
+            <div class="flex justify-center">
+                <p class="font-semibold pr-3">Telefono :</p> <span>
+                    {{ medico.telefono }}</span>
+            </div>
+            <app-titulo>Horarios</app-titulo>
+            <div class="-mt-10 flex flex-col justify-center items-center">
+                <p *ngFor="let item of horarios">
+                    Disponible a las {{item}} horas
+                </p>
+            </div>
+        </div>
+        <button (click)="closeModal()" class="modal__close">Cerrar</button>
+    </div>
+</section>

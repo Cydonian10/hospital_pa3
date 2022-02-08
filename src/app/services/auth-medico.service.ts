@@ -4,7 +4,7 @@ import { environment } from '../../environments/environment';
 import { ILoginData, IResAuth, IRegistroMedico } from '../models/auth.interface';
 import { BehaviorSubject, catchError, tap, throwError } from 'rxjs';
 import { LocalStorageService } from './local-storage.service';
-import { IMedico, IRespMedico } from '../models/medico.interface';
+import { IRespMedico, UpdateMedicoDto } from '../models/medico.interface';
 
 @Injectable( {
   providedIn: 'root'
@@ -12,7 +12,11 @@ import { IMedico, IRespMedico } from '../models/medico.interface';
 export class AuthMedicoService {
 
   private url = environment.urlBase;
-  public medico$ = new BehaviorSubject<IMedico>( {} as IMedico );
+  public medico$ = new BehaviorSubject<IRespMedico>( {} as IRespMedico );
+
+  get medico () {
+    return this.medico$.asObservable();
+  }
 
   constructor(
     private http: HttpClient,
@@ -34,9 +38,13 @@ export class AuthMedicoService {
   }
 
   myProfile () {
-    return this.http.get<IRespMedico>( `${ this.url }/api/medico-profile` ).pipe(
-      tap( ( resp ) => this.medico$.next( resp.data ) )
-    );
+    if ( Object.keys( this.medico$.value ).length === 0 ) {
+      console.log( 'hola' );
+      return this.http.get<IRespMedico>( `${ this.url }/api/medico-profile` ).pipe(
+        tap( ( resp ) => this.medico$.next( resp ) )
+      );
+    }
+    return this.medico$.asObservable();
   }
 
   register ( data: IRegistroMedico ) {
@@ -54,6 +62,10 @@ export class AuthMedicoService {
 
     localStorage.removeItem( 'token' );
     return this.http.get<IResAuth>( `${ this.url }/api/logout/medico`, { headers } );
+  }
+
+  update ( changes: UpdateMedicoDto, id: number ) {
+    return this.http.put<IRespMedico>( `${ this.url }/api/medico/update/${ id }`, changes );
   }
 
   //! ** Evaluamos el error **

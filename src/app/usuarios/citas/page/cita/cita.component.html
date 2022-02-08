@@ -1,1 +1,44 @@
-<p class="pt-17">cita works!</p>
+<div class="pt-20">
+    <form class="shadow-lg p-4" [formGroup]="myForm">
+
+        <app-titulo>Generar cita</app-titulo>
+
+        <div class="mb-4">
+            <app-label>Nombre de la cita</app-label>
+            <input formControlName="name"
+                   [ngClass]="{'input-invalid': campoInvalido('name')}"
+                   class="input-disabled"
+                   type="text">
+            <app-error-message *ngIf="campoInvalido('name')">Campo requerido
+            </app-error-message>
+        </div>
+
+        <div class="mb-4">
+            <app-label>Descripcion</app-label>
+            <textarea formControlName="description"
+                      [ngClass]="{'input-invalid': campoInvalido('description')}"
+                      class="input-disabled"
+                      rows="2"></textarea>
+
+            <app-error-message *ngIf="campoInvalido('description')">Campo requerido
+            </app-error-message>
+        </div>
+
+        <app-button *ngIf="enviando === 'enviando';else button">
+            ...cargando
+        </app-button>
+
+        <ng-template #button>
+            <app-button (onClickFunction)="handleSubmit()" type="submit">
+                Enviar
+            </app-button>
+        </ng-template>
+
+    </form>
+
+</div>
+
+
+<app-alert *ngIf="enviando === 'success'">
+    Enviado correctamente
+</app-alert>

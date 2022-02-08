@@ -8,6 +8,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class ButtonComponent {
 
   @Input() disable: boolean = false;
+  @Input() type: string = "button";
   @Output() onClickFunction = new EventEmitter();
 
   onClick ( e: Event ) {

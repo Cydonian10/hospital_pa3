@@ -8,6 +8,11 @@ import { LabelComponent } from './components/label/label.component';
 import { ButtonComponent } from './components/button/button.component';
 import { NavBarUsuarioComponent } from './components/nav-bar-usuario/nav-bar-usuario.component';
 import { NavBarMedicoComponent } from './components/nav-bar-medico/nav-bar-medico.component';
+import { AlertComponent } from './components/alert/alert.component';
+import { AlertErrorComponent } from './components/alert-error/alert-error.component';
+import { ButtonSecondaryComponent } from './components/button-secondary/button-secondary.component';
+import { ToArrayPipe } from './pipes/to-array.pipe';
+import { ButtonCancelarComponent } from './components/button-cancelar/button-cancelar.component';
 
 
 
@@ -19,7 +24,12 @@ import { NavBarMedicoComponent } from './components/nav-bar-medico/nav-bar-medic
     LabelComponent,
     ButtonComponent,
     NavBarUsuarioComponent,
-    NavBarMedicoComponent
+    NavBarMedicoComponent,
+    AlertComponent,
+    AlertErrorComponent,
+    ButtonSecondaryComponent,
+    ToArrayPipe,
+    ButtonCancelarComponent
   ],
   exports: [
     NavBarComponent,
@@ -27,7 +37,12 @@ import { NavBarMedicoComponent } from './components/nav-bar-medico/nav-bar-medic
     ErrorMessageComponent,
     LabelComponent,
     ButtonComponent,
-    NavBarUsuarioComponent
+    NavBarUsuarioComponent,
+    AlertComponent,
+    AlertErrorComponent,
+    ButtonSecondaryComponent,
+    ToArrayPipe,
+    ButtonCancelarComponent
   ],
   imports: [
     CommonModule,

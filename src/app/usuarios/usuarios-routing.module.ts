@@ -12,6 +12,9 @@ const routes: Routes = [
       },
       {
         path: "", loadChildren: () => import( "./medicos/medicos.module" ).then( m => m.MedicosModule )
+      },
+      {
+        path: "", loadChildren: () => import( "./perfil/perfil.module" ).then( m => m.PerfilModule )
       }
     ]
   }
