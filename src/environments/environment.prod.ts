@@ -8,5 +8,7 @@ export const environment = {
     authDomain: 'hospital-app-76887.firebaseapp.com',
     messagingSenderId: '666254717406',
   },
-  production: true
+  production: true,
+  urlBase: "https://hosipital02.herokuapp.com"
+
 };
