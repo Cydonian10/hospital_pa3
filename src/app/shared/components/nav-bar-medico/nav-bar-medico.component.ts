@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthMedicoService } from '../../../services/auth-medico.service';
+import { AuthMedicoService } from '@services/auth-medico.service';
 
 @Component( {
   selector: 'app-nav-bar-medico',

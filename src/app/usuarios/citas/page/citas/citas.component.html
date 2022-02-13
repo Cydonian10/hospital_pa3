@@ -1,7 +1,9 @@
 <div class="pt-20">
     <app-titulo>Citas generadas</app-titulo>
-    <article class="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
+    <article
+             class="grid sm:grid-cols-2 md:grid-cols-3 gap-3">
         <div class="p-3 shadow-lg"
+             [ngClass]="{'text-gray-400': cita.cliente === 'cancelado'}"
              *ngFor="let cita of citas">
             <h2 class="text-center ">{{cita.name | titlecase}}</h2>
             <span
@@ -51,7 +53,8 @@
                 </ng-template>
             </div>
             <div>
-                <app-button-cancelar>Cancelar</app-button-cancelar>
+                <app-button-cancelar (onClick)="cancelarCita(cita.id)">Cancelar
+                </app-button-cancelar>
             </div>
         </div>
 

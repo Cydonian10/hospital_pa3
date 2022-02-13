@@ -19,8 +19,8 @@ import { IUsuario } from '@models/usuario.interface';
         </figure>
 
         <div class="pt-2 flex items-center gap-2">
-            <button (click)="toogleModal()" [routerLink]="['/usuarios','create-citas',medico.id]" class="text-indigo-500 border border-indigo-400 w-full py-1">Detalle</button>
-            <button class="text-rose-500 border border-rose-400 w-full py-1">Generar Cita</button>
+            <button (click)="toogleModal()"  class="text-indigo-500 border border-indigo-400 w-full py-1">Detalle</button>
+            <button [routerLink]="['/usuarios','create-citas',medico.id]" class="text-rose-500 border border-rose-400 w-full py-1">Generar Cita</button>
         </div>
     </article>
 

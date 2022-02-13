@@ -29,7 +29,8 @@ export class AuthGuard implements CanActivate, CanLoad {
 
     let token = this.localStorageService.get( 'token' ) ? true : false;
 
-    if ( !this.authService.user$ ) {
+    if ( !this.authService.user$.value ) {
+      console.log( 'hola' );
       this.router.navigateByUrl( "/auth/login" );
     }
 
@@ -48,7 +49,7 @@ export class AuthGuard implements CanActivate, CanLoad {
 
     let token = this.localStorageService.get( 'token' ) ? true : false;
 
-    if ( !this.authService.user$ ) {
+    if ( !this.authService.user$.value ) {
       this.router.navigateByUrl( "/auth/login" );
     }
 

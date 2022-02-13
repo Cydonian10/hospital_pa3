@@ -3,7 +3,13 @@ export interface IRespCitas {
     data: ICita[];
 }
 
+export interface IRespCita {
+    message: string;
+    data: ICita;
+}
+
 export type Estado = 'pendiente' | 'rechazado' | 'aceptado';
+export type Cliente = 'cancelado' | 'no-cancelado';
 
 export interface ICita {
     id: string;
@@ -13,6 +19,7 @@ export interface ICita {
     sala_meet_cita: string;
     estado: Estado;
     created_at: Date;
+    cliente: Cliente;
 }
 
 export interface CreateCitaDto extends Omit<ICita, 'id'> { }

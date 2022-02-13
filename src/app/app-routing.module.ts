@@ -26,6 +26,12 @@ const routes: Routes = [
     loadChildren: () => import( "./medicos/medicos.module" ).then( m => m.MedicosModule )
   },
   {
+    path: "admin",
+    canActivate: [ AuthGuard ],
+    canLoad: [ AuthGuard ],
+    loadChildren: () => import( "./admin/admin.module" ).then( m => m.AdminModule )
+  },
+  {
     path: "**",
     redirectTo: "home"
   }

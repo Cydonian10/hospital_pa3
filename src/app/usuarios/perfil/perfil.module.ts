@@ -5,11 +5,13 @@ import { PerfilRoutingModule } from './perfil-routing.module';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { SharedModule } from '../../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NotificacionComponent } from './pages/notificacion/notificacion.component';
 
 
 @NgModule( {
   declarations: [
-    PerfilComponent
+    PerfilComponent,
+    NotificacionComponent
   ],
   imports: [
     CommonModule,

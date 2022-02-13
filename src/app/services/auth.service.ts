@@ -37,12 +37,10 @@ export class AuthService {
 
   myProfile () {
     if ( Object.keys( this.user$.value ).length === 0 ) {
-      console.log( 'hola' );
       this.http.get<IRespUsuario>( `${ this.url }/api/user-profile` ).pipe(
         tap( ( resp ) => this.user$.next( resp.data ) )
       ).subscribe();
     }
-
   }
 
   update ( changes: UpdateUsuarioDto, id: string ) {

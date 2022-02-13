@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CreateCitaDto } from '@models/cita.interface';
 import { CitaService } from '@services/cita.service';
 
@@ -27,7 +27,8 @@ export class CitaComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
-    private citaService: CitaService
+    private citaService: CitaService,
+    private router: Router
   ) { }
 
   ngOnInit (): void {
@@ -47,9 +48,9 @@ export class CitaComponent implements OnInit {
 
     this.citaService.create( data ).subscribe(
       {
-        next: ( ( resp ) => {
+        next: ( () => {
           this.enviando = 'success';
-          console.log( resp );
+          this.router.navigateByUrl( "/usuarios/citas" );
         } ),
         error: ( () => {
           this.enviando = 'error';

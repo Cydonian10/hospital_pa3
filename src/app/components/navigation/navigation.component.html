@@ -1,0 +1,51 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+               [mode]="(isHandset$ | async) ? 'over' : 'side'"
+               [opened]="(isHandset$ | async) === false">
+    <mat-toolbar class="flex justify-center">
+      <img class="mr-4" src="favicon.ico" alt="">
+      Menu
+    </mat-toolbar>
+    <mat-nav-list>
+      <a routerLinkActive="bg-gray-200" routerLink="/admin/medicos"
+         mat-list-item>
+        <mat-icon class="mr-4">group</mat-icon>
+        Médicos
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+              type="button"
+              aria-label="Toggle sidenav"
+              mat-icon-button
+              (click)="drawer.toggle()"
+              *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>hospital</span>
+      <div class="flex-1"></div>
+      <button mat-icon-button [matMenuTriggerFor]="menu"
+              aria-label="Example icon-button with a menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item routerLink="/usuarios/perfil">
+          <mat-icon>account_circle</mat-icon>
+          <span>Perfil</span>
+        </button>
+        <button mat-menu-item (click)="logaout()">
+          <mat-icon>arrow_back</mat-icon>
+          <span>Salir</span>
+        </button>
+      </mat-menu>
+    </mat-toolbar>
+
+    <div class="container m-auto px-3">
+      <router-outlet></router-outlet>
+    </div>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,20 @@
+<h1 mat-dialog-title>Estado de médico</h1>
+<div mat-dialog-content>
+    <p class="mb-4">
+        {{ data.status === 'inactivo' ? 'Desea activar médico':'Desea desactivar médico' }}
+    </p>
+
+
+    <form [formGroup]="myForm">
+        <mat-radio-group formControlName="status" aria-label="Select an option">
+            <mat-radio-button class="mr-4" value="inactivo">Inactivo</mat-radio-button>
+            <mat-radio-button value="activo">activo</mat-radio-button>
+        </mat-radio-group>
+    </form>
+
+
+</div>
+<div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="undefined" color="warn">No gracias</button>
+    <button mat-button (click)="handleSubmit()" cdkFocusInitial>Enviar</button>
+</div>

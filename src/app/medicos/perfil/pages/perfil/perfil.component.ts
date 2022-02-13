@@ -61,9 +61,11 @@ export class PerfilComponent implements OnInit, OnDestroy {
       this.authMedicoService.myProfile().subscribe( medico => {
         console.log( medico );
         const horarios = JSON.parse( medico.data.horarios );
-        horarios.forEach( ( item: string ) => {
-          this.horariosArr.push( new FormControl( item ) );
-        } );
+        if ( !!horarios ) {
+          horarios?.forEach( ( item: string ) => {
+            this.horariosArr.push( new FormControl( item ) );
+          } );
+        }
         this.id = medico.data.id;
         this.myForm.reset( {
           ...medico.data,

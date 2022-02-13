@@ -22,6 +22,20 @@ export class UserCitaService {
     this.citasByUser();
   }
 
+  updateCita ( changes: ICita, id: string ) {
+    const newValue = this._citasUsuario.value.map( item => {
+      if ( item.id === id ) {
+        item = changes;
+      }
+      return item;
+    } );
+    this._citasUsuario.next( newValue );
+  }
+
+  createCita ( data: ICita ) {
+    this._citasUsuario.next( [ data, ...this._citasUsuario.value ] );
+  }
+
   private citasByUser () {
     if ( !this._citasUsuario.value === false ) {
       console.log( 'hola desde aqui' );

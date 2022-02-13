@@ -1,6 +1,21 @@
-<div class="pt-20 grid  sm:grid-cols-2 md:grid-cols-3 gap-4">
-    <app-card-medico *ngFor="let medico of medicos|async"
-                     [medico]="medico"
-                     [usuario]="(usuarios | async)!">
-    </app-card-medico>
+<div class="pt-20 ">
+
+    <form (click)="filterMedico($event)" class="grid sm:grid-cols-5 gap-2">
+        <input [formControl]="search"
+               type="text"
+               placeholder="Buscar por especialidad"
+               class="input-disabled sm:col-span-3 md:col-span-4">
+        <app-button type="submit">Buscar</app-button>
+    </form>
+
+    <div *ngIf="mostrar.length === 0">
+        No hay resultados
+    </div>
+
+    <div class="grid  sm:grid-cols-2 md:grid-cols-3 gap-4">
+        <app-card-medico *ngFor="let medico of mostrar"
+                         [medico]="medico"
+                         [usuario]="(usuarios | async)!">
+        </app-card-medico>
+    </div>
 </div>

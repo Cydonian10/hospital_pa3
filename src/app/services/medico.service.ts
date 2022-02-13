@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { IMedico, IRespMedicos } from '@models/medico.interface';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { IMedico, IRespMedico, IRespMedicos } from '@models/medico.interface';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+import { UpdateMedicoDto } from '../models/medico.interface';
 
 @Injectable( {
   providedIn: 'root'
@@ -41,4 +42,18 @@ export class MedicoService {
     const medico = this._medicos.value.find( item => item.id === id );
     medico && this._medico.next( medico );
   }
+
+  update ( changes: UpdateMedicoDto, id: number ) {
+    return this.http.put<IRespMedico>( `${ this.url }/api/medico/update/${ id }`, changes ).pipe(
+      tap( ( resp ) => {
+        this._medicos.next( this._medicos.value.map( ( item ) => {
+          if ( item.id === resp.data.id ) {
+            item = { ...item, ...resp.data };
+          }
+          return item;
+        } ) );
+      } )
+    );
+  }
+
 }
