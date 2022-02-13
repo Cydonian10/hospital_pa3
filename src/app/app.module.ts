@@ -8,8 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TokenInterceptor } from './core/interceptores/token.interceptor';
 import { environment } from '../environments/environment';
 
-import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+// import { AngularFireModule } from '@angular/fire/compat';
+// import { AngularFireStorageModule } from '@angular/fire/compat/storage';
 
 import { provideFirebaseApp } from '@angular/fire/app';
 import { initializeApp } from 'firebase/app';
@@ -25,8 +25,8 @@ import { getStorage, provideStorage } from '@angular/fire/storage';
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    AngularFireModule.initializeApp( environment.firebase ),
-    AngularFireStorageModule,
+    // AngularFireModule.initializeApp( environment.firebase ),
+    // AngularFireStorageModule,
 
     provideFirebaseApp( () => initializeApp( environment.firebase ) ),
     provideStorage( () => getStorage() )
